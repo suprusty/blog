@@ -16,7 +16,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
-import com.cisco.blog.data.Comment;
+import com.cisco.blog.data.profile.Comment;
 
 @Path("/")
 @Produces(MediaType.APPLICATION_JSON)

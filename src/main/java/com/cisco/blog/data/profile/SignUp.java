@@ -1,11 +1,19 @@
+
 package com.cisco.blog.data.profile;
 
-public class SignUp {
+import javax.persistence.Entity;
+
+
+
+@Entity
+public class SignUp extends ABlog{
+	
 	private String username;
 	private String password;
 
 	public String getUsername() {
 		return username;
+		
 	}
 
 	public void setUsername(String username) {
@@ -19,4 +27,5 @@ public class SignUp {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
 }

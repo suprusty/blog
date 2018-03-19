@@ -2,36 +2,44 @@ package com.cisco.blog.dao;
 
 import java.util.List;
 
-import com.cisco.blog.data.Blog;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.cisco.blog.data.profile.Blog;
+import com.cisco.blog.data.profile.IBlogEntity;
+import com.cisco.blog.exception.persistence.TransactionException;
+import com.cisco.blog.persistence.service.PersistenceService;
 
 public class BlogDaoImpl implements IBlogDao {
-
-	public List<Blog> getBlogs() {
-
+	@Autowired
+	PersistenceService persistenceService;
+	public List<IBlogEntity> getBlogs() {
+		List<IBlogEntity> blogs = null;
+		try {
+			Class entiyClass = Blog.class;
+			blogs = (List<IBlogEntity>) persistenceService.getListOfObject(entiyClass);
+		} catch (TransactionException e) {
+			e.printStackTrace();
+		}
+		return blogs;
+	}
+	
+	
+	public IBlogEntity addBlog(IBlogEntity blog) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public Blog addBlog(Blog blog) {
-		return null;
-	}
-
-	public Blog updateBlog(long id, Blog blog) {
-
+	public IBlogEntity updateBlog(long id, IBlogEntity blog) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public void deleteBlog(long id) {
-
+		// TODO Auto-generated method stub
+		
 	}
 
-	public Blog getBlog(long id) {
-
+	public IBlogEntity getBlog(long id) {
+		// TODO Auto-generated method stub
 		return null;
-	}
-
-	public CommentDaoImpl getCommentResource() {
-
-		return null;
-	}
-
-}
+	}}

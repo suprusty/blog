@@ -1,0 +1,20 @@
+1)
+Caused by: org.hibernate.AnnotationException: No identifier specified for entity: com.cisco.blog.data.profile.Profile
+Soln
+@MappedSuperclass.
+
+2)@Autowired some time it's work some time it's throw exception we need to have geter and seter for same.
+
+3)If we use 2 different spring xml file by spliting on bean's like rest resouces one xml file and helper on different then container is failing for unable to
+lookup dependence.  
+
+
+4)
+ERROR: HHH000388: Unsuccessful: create table Blog (id bigint not null auto_increment, blogDecc varchar(255), like integer not null, title varchar(255), type varchar(255), primary key (id))
+Mar 10, 2018 3:24:59 PM org.hibernate.tool.hbm2ddl.SchemaUpdate execute
+ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'like integer not null, title varchar(255), type varchar(255), primary key (id))' at line 1
+Mar 10, 2018 3:24:59 PM org.hibernate.tool.hbm2ddl.SchemaUpdate execute
+ERROR: HHH000388: Unsuccessful: create table Comment (id bigint not null auto_increment, comments varchar(255), like integer not null, primary key (id))
+Mar 10, 2018 3:24:59 PM org.hibernate.tool.hbm2ddl.SchemaUpdate execute
+
+Best approch to take the query and run in database server to see exactly what is error. In above case i have used as like attribute but it's sql field.

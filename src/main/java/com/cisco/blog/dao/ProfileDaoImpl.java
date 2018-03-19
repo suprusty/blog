@@ -2,31 +2,31 @@ package com.cisco.blog.dao;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.cisco.blog.data.profile.Profile;
 import com.cisco.blog.exception.persistence.TransactionException;
 import com.cisco.blog.persistence.service.PersistenceService;
-import com.cisco.blog.spring.BlogBeanFactory;
 
 public class ProfileDaoImpl implements IProfileDao {
+	@Autowired
+	PersistenceService persistenceService;
 
 	public List<Profile> getProfiles() {
-
-		PersistenceService persistenceService = (PersistenceService) BlogBeanFactory.getBean("persistenceService");
-		List<Profile> shipmentTypeList = null;
+		List<Profile> profiles = null;
 		try {
 			Class entiyClass = Profile.class;
-			shipmentTypeList = (List<Profile>) persistenceService.getListOfObject(entiyClass);
+			profiles = (List<Profile>) persistenceService.getListOfObject(entiyClass);
 		} catch (TransactionException e) {
 			e.printStackTrace();
 		}
-		return shipmentTypeList;
+		return profiles;
 
 	}
 
 	public Profile addProfile(Profile profile) {
 		try {
-			PersistenceService persistenceService = (PersistenceService) BlogBeanFactory.getBean("persistenceService");
-			persistenceService.addObject(profile);
+			persistenceService.addObject(null);
 		} catch (TransactionException e) {
 			e.printStackTrace();
 		}
@@ -35,15 +35,14 @@ public class ProfileDaoImpl implements IProfileDao {
 
 	public Profile getProfile(String profileName) {
 
-		PersistenceService persistenceService = (PersistenceService) BlogBeanFactory.getBean("persistenceService");
 		Profile profile = null;
-		try {
-			Class entiyClass = Profile.class;
-			profile = (Profile) persistenceService.getObjectById(123, entiyClass);
+		/*	try {
+			//Class entiyClass = Profile.class;
+			profile = (Profile) persistenceService.getObjectById(123, Profile.class);
 		} catch (TransactionException e) {
 			e.printStackTrace();
 		}
-
+	*/
 		return profile;
 
 	}

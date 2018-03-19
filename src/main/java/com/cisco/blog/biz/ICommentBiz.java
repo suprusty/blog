@@ -2,7 +2,7 @@ package com.cisco.blog.biz;
 
 import java.util.List;
 
-import com.cisco.blog.data.Comment;
+import com.cisco.blog.data.profile.Comment;
 
 public interface ICommentBiz {
 

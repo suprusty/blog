@@ -2,17 +2,17 @@ package com.cisco.blog.biz;
 
 import java.util.List;
 
-import com.cisco.blog.data.Blog;
+import com.cisco.blog.data.profile.IBlogEntity;
 
 public interface IBlogBiz {
 
-	public List<Blog> getBlogs();
+	public List<IBlogEntity> getBlogs();
 
-	public Blog addBlog(Blog blog);
+	public IBlogEntity addBlog(IBlogEntity blog);
 
-	public Blog updateBlog(long id, Blog blog);
+	public IBlogEntity updateBlog(long id, IBlogEntity blog);
 
 	public void deleteBlog(long id);
 
-	public Blog getBlog(long id);
+	public IBlogEntity getBlog(long id);
 }

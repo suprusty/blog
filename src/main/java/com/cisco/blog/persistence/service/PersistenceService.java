@@ -11,7 +11,7 @@ import javax.persistence.criteria.Root;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cisco.blog.data.ABlog;
+import com.cisco.blog.data.profile.ABlog;
 import com.cisco.blog.exception.persistence.TransactionException;
 
 public class PersistenceService extends APersistenceService {
@@ -37,7 +37,7 @@ public class PersistenceService extends APersistenceService {
 	}
 
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = TransactionException.class)
-	public ABlog getObjectById(Integer id, Class entityClass) throws TransactionException {
+	public ABlog getObjectById(Long id, Class entityClass) throws TransactionException {
 		ABlog aBlog = null;
 		try {
 			aBlog = (ABlog) entityManager.find(entityClass, id);
@@ -54,7 +54,7 @@ public class PersistenceService extends APersistenceService {
 			CriteriaBuilder builder = entityManager.getCriteriaBuilder();
 			CriteriaQuery cq = builder.createQuery(entityClass);
 			Root rootEntry = cq.from(entityClass);
-			cq.select(rootEntry).orderBy(builder.asc(rootEntry.get("nameText")));
+			cq.select(rootEntry).orderBy(builder.asc(rootEntry.get("name")));
 			entityClassList = entityManager.createQuery(cq).getResultList();
 		} catch (Exception e) {
 			throw new TransactionException(e);

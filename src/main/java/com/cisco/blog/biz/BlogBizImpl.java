@@ -2,34 +2,45 @@ package com.cisco.blog.biz;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.cisco.blog.dao.IBlogDao;
-import com.cisco.blog.data.Blog;
-import com.cisco.blog.spring.BlogBeanFactory;
+import com.cisco.blog.data.profile.IBlogEntity;
 
 public class BlogBizImpl implements IBlogBiz {
+	@Autowired
+	IBlogDao imongodbBlogDao;
+	
+	
 
-	public List<Blog> getBlogs() {
-		IBlogDao blogDao = (IBlogDao) BlogBeanFactory.getBean("blogDao");
-		return blogDao.getBlogs();
+	public IBlogDao getImongodbBlogDao() {
+		return imongodbBlogDao;
 	}
 
-	public Blog addBlog(Blog blog) {
-		IBlogDao blogDao = (IBlogDao) BlogBeanFactory.getBean("blogDao");
-		return blogDao.addBlog(blog);
+	public void setImongodbBlogDao(IBlogDao imongodbBlogDao) {
+		this.imongodbBlogDao = imongodbBlogDao;
 	}
 
-	public Blog updateBlog(long id, Blog blog) {
-		IBlogDao blogDao = (IBlogDao) BlogBeanFactory.getBean("blogDao");
-		return blogDao.updateBlog(id, blog);
+	public List<IBlogEntity> getBlogs() {
+		return imongodbBlogDao.getBlogs();
+	}
+
+	public IBlogEntity addBlog(IBlogEntity blog) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public IBlogEntity updateBlog(long id, IBlogEntity blog) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	public void deleteBlog(long id) {
-		IBlogDao blogDao = (IBlogDao) BlogBeanFactory.getBean("blogDao");
-		blogDao.deleteBlog(id);
+		// TODO Auto-generated method stub
+		
 	}
 
-	public Blog getBlog(long id) {
-		IBlogDao blogDao = (IBlogDao) BlogBeanFactory.getBean("blogDao");
-		return blogDao.getBlog(id);
-	}
-}
+	public IBlogEntity getBlog(long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}}

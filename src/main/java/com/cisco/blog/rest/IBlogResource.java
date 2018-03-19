@@ -15,16 +15,17 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
-import com.cisco.blog.data.Blog;
+import com.cisco.blog.data.profile.Blog;
+import com.cisco.blog.data.profile.IBlogEntity;
 
-@Path("/blog")
+@Path("/blogs")
 @Consumes(value = { MediaType.APPLICATION_JSON, MediaType.TEXT_XML })
 @Produces(MediaType.APPLICATION_JSON)
 public interface IBlogResource {
 
 
 	@GET
-	public List<Blog> getBlogs();
+	public List<IBlogEntity> getBlogs();
 	
 	@POST
 	public Response addBlog(Blog blog, @Context UriInfo uriInfo);
@@ -40,7 +41,7 @@ public interface IBlogResource {
 	
 	@GET
 	@Path("/{blogId}")
-	public Blog getBlog(@PathParam("blogId") long id, @Context UriInfo uriInfo);
+	public IBlogEntity getBlog(@PathParam("blogId") long id, @Context UriInfo uriInfo);
 
 	@Path("/{blogId}/comments")
 	public CommentResource getCommentResource();

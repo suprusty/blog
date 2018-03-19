@@ -1,18 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:jaxrs="http://cxf.apache.org/jaxrs" xmlns:cxf="http://cxf.apache.org/core"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="
-                        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-                        http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
-                        http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd">
-	<context:component-scan base-package="com.cisco.blog.rest" />
-
+   <beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jaxrs="http://cxf.apache.org/jaxrs"  xmlns:cxf="http://cxf.apache.org/core"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+                          http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd
+                            http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
+                        	http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd
+                        	http://www.springframework.org/schema/tx 
+                            http://www.springframework.org/schema/tx/spring-tx.xsd">
+    <context:annotation-config />
+	<tx:annotation-driven transaction-manager="transactionManager" />
+    <context:component-scan base-package="com.cisco.blog.rest" />
+	<context:component-scan base-package="com.cisco.blog.rest.profile" />
+	<context:component-scan base-package="com.cisco.blog.data.profile" />
+	
+	
 	<jaxrs:server id="exampleCxfServer" address="/">
 		<jaxrs:serviceBeans>
 			<ref bean="profileResource" />
+			<ref bean="blogResource" />
 		</jaxrs:serviceBeans>
 		<jaxrs:extensionMappings>
 			<entry key="json" value="application/json" />
@@ -25,8 +34,50 @@
 		</jaxrs:providers>
 	</jaxrs:server>
 	<bean id="profileResource" class="com.cisco.blog.rest.profile.ProfileResource" />
+	<bean id="blogResource" class="com.cisco.blog.rest.BlogResource" />
+	
+	
+	<bean id="profileBiz" class="com.cisco.blog.biz.profile.ProfileBizImpl" />
+	<bean id="blogBizImpl" class="com.cisco.blog.biz.BlogBizImpl" />
+	<bean id="commentBizImpl" class="com.cisco.blog.biz.CommentBizImpl" />
 
+	<bean id="iProfileDao" class="com.cisco.blog.dao.ProfileDaoImpl" />
+	<bean id="ijpablogDao" class="com.cisco.blog.dao.BlogDaoImpl" />
+	<bean id="iCommentDao" class="com.cisco.blog.dao.CommentDaoImpl" />
+	<bean id="persistenceService" class="com.cisco.blog.persistence.service.PersistenceService" />
+	
+	
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
 
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan">
+			<list>
+				<value>com.cisco.blog.data.profile</value>
+			</list>
+		</property>
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<property name="showSql" value="false" />
+				<!-- <property name="databasePlatform" value="org.hibernate.dialect.MySQLDialect" /> -->
+				<property name="generateDdl" value="true" />
+				
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3307/mydatabase" />
+		<property name="username" value="mydatabaseuser" />
+		<property name="password" value="mydatbasepassword" />
+	</bean>
+	
+	
 
 </beans>
     
