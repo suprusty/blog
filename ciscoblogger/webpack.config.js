@@ -2,7 +2,7 @@ config = {
    entry: './blogger/main.js',
 	
    output: {
-      path:'/Users/uviswesw/Desktop/CISCO/CMAD/es6/uv-reactjs/ciscoblogger',
+      path:'/Users/uviswesw/Desktop/CISCO/CMAD/BloggerProjectCode/blog/ciscoblogger',
       filename: 'index.js',
    },
 	
