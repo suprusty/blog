@@ -1,0 +1,5 @@
+resources/PatchTest.class
+resources/ex04_1/CustomerResourceTest.class
+resources/CustomerResourceTest.class
+resources/ex05_1/InjectionTest.class
+resources/ex04_1/CustomerResourcePatchAnnotaionTest.class

@@ -10,8 +10,8 @@ import javax.ws.rs.core.UriInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.cisco.blog.biz.IBlogBiz;
-import com.cisco.blog.data.profile.Blog;
 import com.cisco.blog.data.profile.IBlogEntity;
+import com.cisco.blog.mongodb.data.Blog;
 
 public class BlogResource implements IBlogResource {
 	@Autowired

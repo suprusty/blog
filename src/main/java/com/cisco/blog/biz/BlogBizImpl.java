@@ -25,9 +25,8 @@ public class BlogBizImpl implements IBlogBiz {
 		return imongodbBlogDao.getBlogs();
 	}
 
-	public IBlogEntity addBlog(IBlogEntity blog) {
-		// TODO Auto-generated method stub
-		return null;
+	public void addBlog(IBlogEntity blog) {
+		imongodbBlogDao.addBlog(blog);
 	}
 
 	public IBlogEntity updateBlog(long id, IBlogEntity blog) {

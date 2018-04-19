@@ -3,8 +3,10 @@ package com.cisco.blog.mongodb.data;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.cisco.blog.data.profile.IBlogEntity;
 @Document(collection = "Blog")
-public class Blog {
+public class Blog implements IBlogEntity {
 	@Id
 	private String id;
 	public String getId() {

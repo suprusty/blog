@@ -30,9 +30,9 @@ public class MDBBlogDaoImpl implements IBlogDao {
 		return listUser;
 	}
 
-	public IBlogEntity addBlog(IBlogEntity blog) {
-		// TODO Auto-generated method stub
-		return null;
+	public void addBlog(IBlogEntity blog) {
+		MongoOperations mongoOperation = (MongoOperations)mongoDbPersistenceService.getMongoTemplate();
+		mongoOperation.save(blog);
 	}
 
 	public IBlogEntity updateBlog(long id, IBlogEntity blog) {

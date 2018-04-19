@@ -15,8 +15,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
-import com.cisco.blog.data.profile.Blog;
 import com.cisco.blog.data.profile.IBlogEntity;
+import com.cisco.blog.mongodb.data.Blog;
 
 @Path("/blogs")
 @Consumes(value = { MediaType.APPLICATION_JSON, MediaType.TEXT_XML })

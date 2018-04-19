@@ -8,7 +8,7 @@ public interface IBlogBiz {
 
 	public List<IBlogEntity> getBlogs();
 
-	public IBlogEntity addBlog(IBlogEntity blog);
+	public void addBlog(IBlogEntity blog);
 
 	public IBlogEntity updateBlog(long id, IBlogEntity blog);
 

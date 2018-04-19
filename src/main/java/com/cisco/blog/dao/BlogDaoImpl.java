@@ -24,9 +24,8 @@ public class BlogDaoImpl implements IBlogDao {
 	}
 	
 	
-	public IBlogEntity addBlog(IBlogEntity blog) {
+	public void addBlog(IBlogEntity blog) {
 		// TODO Auto-generated method stub
-		return null;
 	}
 
 	public IBlogEntity updateBlog(long id, IBlogEntity blog) {

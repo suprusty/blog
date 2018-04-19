@@ -15,7 +15,7 @@ import com.cisco.blog.data.profile.ABlog;
 import com.cisco.blog.exception.persistence.TransactionException;
 
 public class PersistenceService extends APersistenceService {
-	@PersistenceContext
+	//@PersistenceContext
 	public EntityManager entityManager;
 
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = TransactionException.class)
